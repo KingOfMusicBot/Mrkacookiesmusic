@@ -5,13 +5,13 @@ from pyrogram import idle
 from pytgcalls.exceptions import NoActiveGroupCall
 
 import config
-from AnonXMusic import LOGGER, app, userbot
-from AnonXMusic.core.call import Anony
-from AnonXMusic.misc import sudo
-from AnonXMusic.plugins import ALL_MODULES
-from AnonXMusic.utils.database import get_banned_users, get_gbanned
-from config import BANNED_USERS, COOKIES_URL
-from AnonXMusic.plugins.sudo.cookies import set_cookies
+from AnonXMusicMUSIC import LOGGER, app, userbot
+from AnonXMusicMUSIC.core.call import AnonXMusic
+from AnonXMusicMUSIC.misc import sudo
+from AnonXMusicMUSIC.plugins import ALL_MODULES
+from AnonXMusicMUSIC.utils.database import get_banned_users, get_gbanned
+from config import BANNED_USERS
+
 
 async def init():
     if (
@@ -21,7 +21,7 @@ async def init():
         and not config.STRING4
         and not config.STRING5
     ):
-        LOGGER(__name__).error("Assistant client variables not defined, exiting...")
+        LOGGER(__name__).error("𝐒𝐭𝐫𝐢𝐧𝐠 𝐒𝐞𝐬𝐬𝐢𝐨𝐧 𝐍𝐨𝐭 𝐅𝐢𝐥𝐥𝐞𝐝, 𝐏𝐥𝐞𝐚𝐬𝐞 𝐅𝐢𝐥𝐥 𝐀 𝐏𝐲𝐫𝐨𝐠𝐫𝐚𝐦 𝐒𝐞𝐬𝐬𝐢𝐨𝐧")
         exit()
     await sudo()
     try:
@@ -35,26 +35,27 @@ async def init():
         pass
     await app.start()
     for all_module in ALL_MODULES:
-        importlib.import_module("AnonXMusic.plugins" + all_module)
-    LOGGER("AnonXMusic.plugins").info("Successfully Imported Modules...")
+        importlib.import_module("AnonXMusicMUSIC.plugins" + all_module)
+    LOGGER("AnonXMusicMUSIC.plugins").info("𝐀𝐥𝐥 𝐅𝐞𝐚𝐭𝐮𝐫𝐞𝐬 𝐋𝐨𝐚𝐝𝐞𝐝 𝐁𝐚𝐛𝐲🥳...")
     await userbot.start()
-    await Anony.start()
+    await AnonXMusic.start()
     try:
-        await Anony.stream_call("https://te.legra.ph/file/29f784eb49d230ab62e9e.mp4")
+        await AnonXMusic.stream_call("https://te.legra.ph/file/29f784eb49d230ab62e9e.mp4")
     except NoActiveGroupCall:
-        LOGGER("AnonXMusic").error(
-            "Please turn on the videochat of your log group\channel.\n\nStopping Bot..."
+        LOGGER("AnonXMusicMUSIC").error(
+            "𝗣𝗹𝗭 𝗦𝗧𝗔𝗥𝗧 𝗬𝗢𝗨𝗥 𝗟𝗢𝗚 𝗚𝗥𝗢𝗨𝗣 𝗩𝗢𝗜𝗖𝗘𝗖𝗛𝗔𝗧\𝗖𝗛𝗔𝗡𝗡𝗘𝗟\n\n𝗧𝗠𝗠 𝗕𝗢𝗧 𝗦𝗧𝗢𝗣........"
         )
         exit()
     except:
         pass
-
-    res = await set_cookies(COOKIES_URL)
-    LOGGER("AnonXMusic").info(f"{res}")
-    await Anony.decorators()
+    await AnonXMusic.decorators()
+    LOGGER("AnonXMusicMUSIC").info(
+        "╔═════ஜ۩۞۩ஜ════╗\n  ☠︎︎𝗠𝗔𝗗𝗘 𝗕𝗬 𝗠𝗥 𝗡𝗢𝗕𝗜☠︎︎\n╚═════ஜ۩۞۩ஜ════╝"
+    )
     await idle()
     await app.stop()
-    LOGGER("AnonXMusic").info("Stopping AnonX Music Bot...")
+    await userbot.stop()
+    LOGGER("AnonXMusicMUSIC").info("𝗦𝗧𝗢𝗣 𝗧𝗠𝗠 𝗠𝗨𝗦𝗜𝗖🎻 𝗕𝗢𝗧..")
 
 
 if __name__ == "__main__":
