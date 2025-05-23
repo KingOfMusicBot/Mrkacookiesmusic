@@ -84,55 +84,7 @@ async def get_thumb(videoid,user_id):
         xp=Image.open(sp)
 
         youtube = Image.open(f"cache/thumb{videoid}.png")
-        image1 = changeImageSize(1280, 720, youtube)
-        image2 = image1.convert("RGBA")
-        background = image2.filter(filter=ImageFilter.BoxBlur(10))
-        enhancer = ImageEnhance.Brightness(background)
-        background = enhancer.enhance(0.5)
-        y=changeImageSize(200,200,circle(youtube)) 
-        background.paste(y,(45,225),mask=y)
-        a=changeImageSize(200,200,circle(xp)) 
-        background.paste(a,(1045,225),mask=a)
-        draw = ImageDraw.Draw(background)
-        arial = ImageFont.truetype("AnonXMusic/assets/font2.ttf", 30)
-        font = ImageFont.truetype("AnonXMusic/assets/font.ttf", 30)
-        draw.text((1110, 8), unidecode(app.name), fill="white", font=arial)
-        draw.text(
-                (55, 560),
-                f"{channel} | {views[:23]}",
-                (255, 255, 255),
-                font=arial,
-            )
-        draw.text(
-                (57, 600),
-                clear(title),
-                (255, 255, 255),
-                font=font,
-            )
-        draw.line(
-                [(55, 660), (1220, 660)],
-                fill="white",
-                width=5,
-                joint="curve",
-            )
-        draw.ellipse(
-                [(918, 648), (942, 672)],
-                outline="white",
-                fill="white",
-                width=15,
-            )
-        draw.text(
-                (36, 685),
-                "00:00",
-                (255, 255, 255),
-                font=arial,
-            )
-        draw.text(
-                (1185, 685),
-                f"{duration[:23]}",
-                (255, 255, 255),
-                font=arial,
-            )
+    
         try:
             os.remove(f"cache/thumb{videoid}.png")
         except:
